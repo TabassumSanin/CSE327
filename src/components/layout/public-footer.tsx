@@ -51,7 +51,7 @@ export function PublicFooter() {
       </div>
       <div className="border-t border-line">
         <div className="container-page flex flex-col items-center justify-between gap-2 py-4 text-caption text-muted sm:flex-row">
-          <p>© 2026 Smart Food Exchange. Academic project for CSE327.</p>
+          <p>© Group7__CSE327.</p>
           <p>English · বাংলা</p>
         </div>
       </div>
