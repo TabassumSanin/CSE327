@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Frozen food illustration">
+  <defs>
+    <linearGradient id="bg6" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F1F8F8"/>
+      <stop offset="1" stop-color="#D5E8E6"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg6)"/>
+  <circle cx="650" cy="120" r="130" fill="#E5F2F1"/>
+  <circle cx="130" cy="420" r="140" fill="#D9EBE9"/>
+  <g stroke="#5E9290" stroke-width="5" stroke-linecap="round" opacity="0.55">
+    <path d="M150 150v60M126 165l48 30M174 165l-48 30M150 180l-14-8M150 180l14-8M150 180l-8 14M150 180l8 14"/>
+    <path d="M666 330v70M638 348l56 34M694 348l-56 34"/>
+  </g>
+  <g>
+    <rect x="250" y="180" width="150" height="180" rx="16" fill="#8FB8B4"/>
+    <rect x="250" y="180" width="150" height="52" rx="16" fill="#6C9E9A"/>
+    <path d="M290 220h70" stroke="#E7F2EB" stroke-width="8" stroke-linecap="round"/>
+    <rect x="276" y="262" width="98" height="62" rx="10" fill="#E7F2EB" opacity="0.8"/>
+    <path d="M300 280h50M300 298h32" stroke="#6C9E9A" stroke-width="6" stroke-linecap="round"/>
+    <rect x="430" y="210" width="140" height="150" rx="14" fill="#C6DFE0"/>
+    <rect x="430" y="210" width="140" height="44" rx="14" fill="#9BBFBF"/>
+    <circle cx="500" cy="300" r="30" fill="#F2F8F8"/>
+    <path d="M500 280v40M484 290l32 20M516 290l-32 20" stroke="#6C9E9A" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <ellipse cx="400" cy="395" rx="250" ry="26" fill="#5E9290" opacity="0.14"/>
+  <g fill="#6C9E9A" opacity="0.5">
+    <circle cx="200" cy="300" r="6"/><circle cx="220" cy="330" r="4"/><circle cx="610" cy="230" r="6"/><circle cx="630" cy="262" r="4"/>
+  </g>
+  <path d="M340 120c14-16 20-32 18-50 18 10 26 28 20 46 14-2 26-10 34-24 6 22-4 44-24 54" stroke="#9BBFBF" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.65"/>
+</svg>
