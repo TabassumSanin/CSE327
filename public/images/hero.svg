@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 540" role="img" aria-label="Illustration of food donation and redistribution">
+  <defs>
+    <linearGradient id="heroBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E7F2EB"/>
+      <stop offset="1" stop-color="#CBE3D5"/>
+    </linearGradient>
+    <linearGradient id="box" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E8BC7A"/>
+      <stop offset="1" stop-color="#C9974F"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4E9476"/>
+      <stop offset="1" stop-color="#245C45"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="540" rx="40" fill="url(#heroBg)"/>
+  <circle cx="520" cy="92" r="150" fill="#F2F8F4" opacity="0.65"/>
+  <circle cx="96" cy="466" r="130" fill="#D6E9DD" opacity="0.8"/>
+  <g opacity="0.35" stroke="#3B8062" stroke-width="3" fill="none">
+    <path d="M60 140c40-30 80-20 110 10"/>
+    <path d="M520 420c40-10 70 6 88 30"/>
+  </g>
+
+  <ellipse cx="320" cy="470" rx="210" ry="26" fill="#245C45" opacity="0.12"/>
+
+  <g>
+    <path d="M212 306c-24 6-44 26-46 52-2 30 18 54 46 58l84 12 20-70z" fill="#F0BE8F"/>
+    <path d="M166 358c-6 18 4 36 22 40l62 14 10-34-58-24c-14-6-30-4-36-6z" fill="#E0A97A"/>
+    <path d="M248 330l-22 76 54 12 24-78z" fill="#F5C79E"/>
+  </g>
+
+  <g>
+    <path d="M430 306c24 6 44 26 46 52 2 30-18 54-46 58l-84 12-20-70z" fill="#F0BE8F"/>
+    <path d="M476 358c6 18-4 36-22 40l-62 14-10-34 58-24c14-6 30-4 36-6z" fill="#E0A97A"/>
+    <path d="M394 330l22 76-54 12-24-78z" fill="#F5C79E"/>
+  </g>
+
+  <g>
+    <rect x="238" y="238" width="166" height="130" rx="14" fill="url(#box)"/>
+    <rect x="238" y="238" width="166" height="30" rx="14" fill="#D9A25C"/>
+    <rect x="304" y="238" width="34" height="130" fill="#B47F38" opacity="0.55"/>
+    <rect x="314" y="286" width="14" height="30" rx="4" fill="#F2E3C7"/>
+    <path d="M264 216c20-4 34-18 38-38-22-2-36 14-38 38z" fill="url(#leaf)"/>
+    <path d="M280 224c-2-22-16-38-38-42 0 24 16 40 38 42z" fill="#6FA88C"/>
+    <circle cx="348" cy="218" r="24" fill="#D9793B"/>
+    <circle cx="348" cy="218" r="17" fill="#E8934D"/>
+    <path d="M348 196c2-10 8-16 18-18-2 10-8 16-18 18z" fill="#3B8062"/>
+    <ellipse cx="398" cy="224" rx="26" ry="18" fill="#8FBE63" transform="rotate(-16 398 224)"/>
+    <path d="M386 206c4-16 16-24 30-26-2 16-12 24-30 26z" fill="#4E7C35"/>
+  </g>
+
+  <g transform="translate(430 100)">
+    <rect x="0" y="0" width="150" height="58" rx="14" fill="#FFFFFF" opacity="0.96"/>
+    <circle cx="28" cy="29" r="14" fill="#DDF3E4"/>
+    <path d="M22 29l5 5 9-10" stroke="#245C45" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="50" y="17" width="82" height="9" rx="4.5" fill="#245C45" opacity="0.8"/>
+    <rect x="50" y="32" width="58" height="7" rx="3.5" fill="#6B7870" opacity="0.55"/>
+  </g>
+
+  <g transform="translate(52 84)">
+    <rect x="0" y="0" width="132" height="54" rx="14" fill="#FFFFFF" opacity="0.96"/>
+    <circle cx="26" cy="27" r="13" fill="#FFF1CC"/>
+    <path d="M26 19v10l6 4" stroke="#8A6D3B" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <rect x="46" y="16" width="68" height="8" rx="4" fill="#245C45" opacity="0.8"/>
+    <rect x="46" y="30" width="46" height="6" rx="3" fill="#6B7870" opacity="0.5"/>
+  </g>
+
+  <g fill="#245C45" opacity="0.5">
+    <circle cx="546" cy="240" r="5"/>
+    <circle cx="572" cy="266" r="3.5"/>
+    <circle cx="88" cy="250" r="4"/>
+    <circle cx="110" cy="276" r="3"/>
+  </g>
+</svg>

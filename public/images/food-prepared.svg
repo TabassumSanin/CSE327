@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Prepared food illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EDF6F0"/>
+      <stop offset="1" stop-color="#CFE5D8"/>
+    </linearGradient>
+    <linearGradient id="bowl" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3B8062"/>
+      <stop offset="1" stop-color="#245C45"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <circle cx="660" cy="90" r="120" fill="#E7F2EB" opacity="0.8"/>
+  <circle cx="120" cy="420" r="150" fill="#DDEEDF"/>
+  <g opacity="0.5" stroke="#3B8062" stroke-width="3" fill="none">
+    <path d="M620 300c30-40 70-40 100 0"/>
+    <path d="M640 340c20-26 46-26 64 0"/>
+  </g>
+  <ellipse cx="400" cy="392" rx="220" ry="34" fill="#245C45" opacity="0.12"/>
+  <path d="M230 270h340c-6 86-62 128-170 128s-164-42-170-128z" fill="url(#bowl)"/>
+  <ellipse cx="400" cy="270" rx="170" ry="42" fill="#4E9476"/>
+  <ellipse cx="400" cy="266" rx="146" ry="32" fill="#F6E7C8"/>
+  <g>
+    <circle cx="340" cy="258" r="26" fill="#E8B65C"/>
+    <circle cx="396" cy="248" r="22" fill="#D9793B"/>
+    <circle cx="448" cy="260" r="26" fill="#7FAE57"/>
+    <circle cx="372" cy="282" r="16" fill="#C0552E"/>
+    <circle cx="424" cy="284" r="14" fill="#8FBE63"/>
+    <circle cx="466" cy="280" r="12" fill="#E8B65C"/>
+    <path d="M310 250c12-18 36-18 46 0" stroke="#4E7C35" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M438 240c10-16 30-16 40 0" stroke="#4E7C35" stroke-width="6" fill="none" stroke-linecap="round"/>
+  </g>
+  <g stroke="#6FA88C" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.75">
+    <path d="M350 180c-14-20 10-30 0-50"/>
+    <path d="M400 172c-14-20 10-30 0-50"/>
+    <path d="M450 180c-14-20 10-30 0-50"/>
+  </g>
+  <g fill="#3B8062" opacity="0.55">
+    <path d="M665 210c-24 6-38 26-38 46 24-2 40-20 38-46z"/>
+    <path d="M690 250c-18-16-42-14-56 0 16 16 42 16 56 0z"/>
+  </g>
+</svg>

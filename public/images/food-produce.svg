@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Fresh produce illustration">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F1F8EF"/>
+      <stop offset="1" stop-color="#D7E9D1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg3)"/>
+  <circle cx="660" cy="120" r="130" fill="#E7F2EB"/>
+  <ellipse cx="400" cy="410" rx="270" ry="30" fill="#245C45" opacity="0.1"/>
+  <g>
+    <circle cx="320" cy="300" r="86" fill="#D9793B"/>
+    <circle cx="320" cy="300" r="70" fill="#E8934D"/>
+    <path d="M320 214c4-22 18-34 38-38-4 22-18 34-38 38z" fill="#3B8062"/>
+    <circle cx="470" cy="330" r="66" fill="#7FAE57"/>
+    <path d="M470 264c2-18 12-28 30-32-2 18-12 28-30 32z" fill="#4E7C35"/>
+    <path d="M410 350c-42 0-64-28-60-62 34 4 60 26 60 62z" fill="#4E7C35"/>
+    <circle cx="548" cy="292" r="52" fill="#E8B65C"/>
+    <path d="M548 240c0-16 10-26 24-30 0 16-10 26-24 30z" fill="#3B8062"/>
+    <ellipse cx="250" cy="360" rx="62" ry="42" fill="#8FBE63" transform="rotate(-18 250 360)"/>
+    <ellipse cx="580" cy="372" rx="58" ry="38" fill="#C0552E" transform="rotate(12 580 372)"/>
+  </g>
+  <g stroke="#245C45" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.65">
+    <path d="M180 250c22-6 36-24 38-46"/>
+    <path d="M182 250c-2-24-16-38-38-42"/>
+  </g>
+  <g fill="#3B8062" opacity="0.45">
+    <path d="M150 330c-22 4-36 20-38 40 24 2 40-16 38-40z"/>
+    <path d="M690 250c-20 2-34 16-38 34 22 4 40-12 38-34z"/>
+  </g>
+</svg>
