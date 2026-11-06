@@ -51,7 +51,7 @@ export function PublicFooter() {
       </div>
       <div className="border-t border-line">
         <div className="container-page flex flex-col items-center justify-between gap-2 py-4 text-caption text-muted sm:flex-row">
-          <p>© Group7__CSE327.</p>
+          <p>© All_rights_reserved_by_Sanin_Nasib_Shajuti.</p>
           <p>English · বাংলা</p>
         </div>
       </div>
