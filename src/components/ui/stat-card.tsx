@@ -18,17 +18,17 @@ export function StatCard({
   hint?: string;
 }) {
   const tones = {
-    green: "bg-lightgreen text-primary",
-    blue: "bg-info text-[#23548C]",
-    amber: "bg-warning text-[#7A5A0B]",
-    rose: "bg-error text-[#8C2F27]",
+    green: "text-primary",
+    blue: "text-muted",
+    amber: "text-risk-soon",
+    rose: "text-risk-review",
   };
   return (
     <div className="card p-4 md:p-6">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-label text-muted">{label}</p>
-          <p className="mt-2 text-[26px] font-bold leading-none tracking-tight text-ink md:text-[30px]">
+          <p className="mt-2 font-display text-[26px] leading-none text-ink md:text-[30px]">
             {value}
           </p>
           {change ? (
@@ -37,14 +37,14 @@ export function StatCard({
                 className={cn(
                   "inline-flex items-center gap-0.5 rounded-md px-1.5 py-0.5 font-semibold",
                   change.positive === false
-                    ? "bg-error text-[#8C2F27]"
-                    : "bg-success text-[#1D6A3E]"
+                    ? "bg-risk-review-bg text-risk-review"
+                    : "bg-risk-safe-bg text-risk-safe"
                 )}
               >
                 {change.positive === false ? (
-                  <ArrowDownRight className="h-3 w-3" />
+                  <ArrowDownRight className="h-3 w-3" aria-hidden />
                 ) : (
-                  <ArrowUpRight className="h-3 w-3" />
+                  <ArrowUpRight className="h-3 w-3" aria-hidden />
                 )}
                 {change.value}
               </span>
@@ -54,8 +54,8 @@ export function StatCard({
             <p className="mt-3 text-caption text-muted">{hint}</p>
           ) : null}
         </div>
-        <span className={cn("grid h-10 w-10 shrink-0 place-items-center rounded-xl md:h-12 md:w-12", tones[tone])}>
-          <Icon className="h-5 w-5 md:h-[22px] md:w-[22px]" />
+        <span className={cn("shrink-0 pt-1", tones[tone])}>
+          <Icon className="h-5 w-5 md:h-[22px] md:w-[22px]" aria-hidden />
         </span>
       </div>
     </div>

@@ -1,18 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Globe2, Leaf, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useApp } from "@/components/providers/app-provider";
-import { Leaf, Globe2 } from "lucide-react";
+import { buttonStyles } from "@/components/ui/button";
 
 const links = [
-  { label: "Home", key: "home", href: "/" },
-  { label: "About", key: "about", href: "/about" },
-  { label: "How It Works", key: "howItWorks", href: "/how-it-works" },
-  { label: "Contact", key: "contact", href: "/contact" },
+  { label: "home", href: "/" },
+  { label: "about", href: "/about" },
+  { label: "howItWorks", href: "/how-it-works" },
+  { label: "contact", href: "/contact" },
 ];
 
 export function PublicHeader() {
@@ -25,63 +25,67 @@ export function PublicHeader() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line/80 bg-white/90 backdrop-blur">
-      <div className="container-page flex h-16 items-center justify-between gap-4 md:h-20">
-        <Link href="/" className="flex items-center gap-2.5" aria-label="Smart Food Exchange home">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-white">
-            <Leaf className="h-5 w-5" />
-          </span>
-          <span className="leading-tight">
-            <span className="block text-[15px] font-bold text-ink">{t("brand")}</span>
-            <span className="block text-[11px] text-muted">{t("tagline")}</span>
+    <header className="sticky top-0 z-40 border-b border-line bg-page">
+      <div className="container-page flex h-16 items-center justify-between gap-3 md:h-[72px]">
+        <Link href="/" className="flex min-w-0 items-center gap-2.5" aria-label="Smart Food Exchange home">
+          <Leaf className="h-5 w-5 shrink-0 text-primary" aria-hidden />
+          <span className="min-w-0 leading-tight">
+            <span className="block truncate font-display text-[16px] font-semibold text-ink md:text-[17px]">
+              {t("brand")}
+            </span>
+            <span className="hidden text-[11px] text-muted sm:block">{t("tagline")}</span>
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "rounded-lg px-3 py-2 text-label transition",
-                pathname === link.href
-                  ? "bg-lightgreen text-primary"
-                  : "text-muted hover:bg-lightgreen/60 hover:text-primary"
-              )}
-            >
-              {t(link.key)}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
+          {links.map((link) => {
+            const active = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                className={cn(
+                  "py-2 text-label transition-colors",
+                  active
+                    ? "font-semibold text-primary underline decoration-primary decoration-2 underline-offset-8"
+                    : "text-muted hover:text-primary"
+                )}
+              >
+                {t(link.label)}
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <button
             type="button"
             onClick={toggleLanguage}
-            className="hidden items-center gap-1.5 rounded-lg border border-line px-2.5 py-2 text-caption font-medium text-muted transition hover:border-secondary hover:text-primary sm:inline-flex"
-            aria-label="Switch language"
+            className="inline-flex h-9 items-center gap-1.5 rounded-lg px-2 text-caption font-medium text-muted transition-colors hover:bg-cream hover:text-primary sm:px-2.5"
+            aria-label={language === "en" ? "Switch language to Bangla" : "Switch language to English"}
           >
-            <Globe2 className="h-3.5 w-3.5" />
+            <Globe2 className="h-4 w-4" aria-hidden />
             {language === "en" ? "বাংলা" : "English"}
           </button>
+
           <Link
             href="/login"
-            className="hidden h-10 items-center rounded-xl border border-line bg-white px-4 text-btn text-ink transition hover:border-secondary hover:text-primary sm:inline-flex"
+            className="hidden text-label text-ink transition-colors hover:text-primary sm:inline-flex sm:py-2"
           >
             {t("login")}
           </Link>
-          <Link
-            href="/register"
-            className="hidden h-10 items-center rounded-xl bg-primary px-4 text-btn text-white transition hover:bg-[#1d4c39] sm:inline-flex"
-          >
-            {t("register")}
+          <Link href="/register?role=donor" className={buttonStyles("primary", "md", "hidden sm:inline-flex")}>
+            {t("donateFood")}
           </Link>
+
           <button
             type="button"
             onClick={() => setOpen((prev) => !prev)}
-            className="grid h-10 w-10 place-items-center rounded-xl border border-line bg-white text-ink lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line bg-white text-ink lg:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
+            aria-controls="public-mobile-menu"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -89,34 +93,31 @@ export function PublicHeader() {
       </div>
 
       {open ? (
-        <div className="border-t border-line bg-white px-4 pb-4 lg:hidden">
-          <nav className="flex flex-col py-2">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "rounded-lg px-3 py-2.5 text-label",
-                  pathname === link.href ? "bg-lightgreen text-primary" : "text-ink"
-                )}
-              >
-                {t(link.key)}
-              </Link>
-            ))}
+        <div id="public-mobile-menu" className="border-t border-line bg-page lg:hidden">
+          <nav className="container-page flex flex-col py-2" aria-label="Mobile navigation">
+            {links.map((link) => {
+              const active = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "border-b border-line py-3 text-body last:border-b-0",
+                    active ? "font-semibold text-primary" : "text-ink"
+                  )}
+                >
+                  {t(link.label)}
+                </Link>
+              );
+            })}
           </nav>
-          <div className="flex items-center gap-2 border-t border-line pt-3">
-            <button
-              type="button"
-              onClick={toggleLanguage}
-              className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-xl border border-line text-btn text-ink"
-            >
-              <Globe2 className="h-4 w-4" /> {language === "en" ? "বাংলা" : "English"}
-            </button>
-            <Link href="/login" className="inline-flex h-10 flex-1 items-center justify-center rounded-xl border border-line text-btn text-ink">
-              {t("login")}
+          <div className="container-page flex flex-col gap-2 pb-5 pt-2 sm:flex-row">
+            <Link href="/register?role=donor" className={buttonStyles("primary", "md", "flex-1")}>
+              {t("donateFood")}
             </Link>
-            <Link href="/register" className="inline-flex h-10 flex-1 items-center justify-center rounded-xl bg-primary text-btn text-white">
-              {t("register")}
+            <Link href="/login" className={buttonStyles("secondary", "md", "flex-1")}>
+              {t("login")}
             </Link>
           </div>
         </div>
