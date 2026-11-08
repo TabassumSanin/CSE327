@@ -50,8 +50,8 @@ export default function ContactPage() {
         <div className="grid gap-6 lg:grid-cols-[1fr_1.3fr]">
           <div className="space-y-3">
             {[
-              { icon: MapPin, title: "Office", lines: ["House 12, Road 5, Gulshan 1", "Dhaka 1212, Bangladesh"] },
-              { icon: Phone, title: "Phone", lines: ["+880 1700 000 111", "+880 1811 223 344"] },
+              { icon: MapPin, title: "Office", lines: ["North South University", "Dhaka 1212, Bangladesh"] },
+              { icon: Phone, title: "Phone", lines: ["+880 1700 000 111"] },
               { icon: Mail, title: "Email", lines: ["hello@smartfoodexchange.org", "support@smartfoodexchange.org"] },
               { icon: Clock, title: "Support hours", lines: ["Sunday – Thursday, 9:00 AM – 6:00 PM", "Urgent donation issues: 24/7"] },
             ].map((item) => {

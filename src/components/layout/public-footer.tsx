@@ -100,6 +100,7 @@ export function PublicFooter() {
         </nav>
 
         <div>
+<<<<<<< Updated upstream
           <h2 className="text-label font-semibold text-ink">{c.reach}</h2>
           <ul className="mt-3 space-y-3 text-small text-muted">
             <li className="flex items-start gap-2">
@@ -118,6 +119,13 @@ export function PublicFooter() {
                 </a>
               </span>
             </li>
+=======
+          <h3 className="text-label font-semibold text-ink">Contact</h3>
+          <ul className="mt-3 space-y-2 text-small text-muted">
+            <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-secondary" /> North South University, Dhaka 1212</li>
+            <li className="flex items-center gap-2"><Phone className="h-4 w-4 shrink-0 text-secondary" /> +880 1700 000 111</li>
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4 shrink-0 text-secondary" /> hello@smartfoodexchange.org</li>
+>>>>>>> Stashed changes
           </ul>
         </div>
       </div>
