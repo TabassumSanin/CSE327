@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --primary: #245c45;
-  --secondary: #3b8062;
-  --light-green: #e7f2eb;
-  --page: #f5f7f5;
-  --ink: #25332b;
-  --muted: #6b7870;
-  --line: #dde5df;
+  --primary: #1f5d3a;
+  --primary-hover: #174a2e;
+  --accent: #c2571a;
+  --page: #faf7f2;
+  --card: #ffffff;
+  --line: #e6e0d6;
+  --ink: #1e2a24;
+  --muted: #5b665f;
+  --cream: #f3ede2;
+  --soft-green: #e3f2e8;
 }
 
 * {
@@ -24,46 +27,83 @@ body {
   background: var(--page);
   color: var(--ink);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-fraunces), Georgia, Cambria, serif;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+/* Bangla mode: the provider adds .font-bangla to <html>. */
+html.font-bangla body,
+html.font-bangla :is(h1, h2, h3, h4, p, a, button, label, span, li, dt, dd) {
+  font-family: var(--font-hind-siliguri), "Noto Sans Bengali", sans-serif;
+  letter-spacing: 0;
+}
+
+html.font-bangla body {
+  line-height: 1.75;
+}
+
+html.font-bangla :is(h1, h2, h3, h4) {
+  line-height: 1.35;
 }
 
 ::selection {
-  background: #c9e0d2;
-  color: #173a2b;
+  background: #e3f2e8;
+  color: #174a2e;
 }
 
 :focus-visible {
-  outline: 2px solid #3b8062;
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--page);
+}
+
+/* Remove the old decorative backgrounds without deleting the class names,
+   because pages outside this branch still reference them. */
+.hero-glow {
+  background-color: var(--page);
+}
+
+.leaf-grid {
+  background-image: none;
 }
 
 @layer components {
   .container-page {
     width: 100%;
-    max-width: 1440px;
+    max-width: 1280px;
     margin-inline: auto;
-    padding-inline: 16px;
+    padding-inline: 20px;
   }
 
   @media (min-width: 768px) {
-    .container-page {
-      padding-inline: 24px;
-    }
-  }
-
-  @media (min-width: 1024px) {
     .container-page {
       padding-inline: 32px;
     }
   }
 
+  @media (min-width: 1280px) {
+    .container-page {
+      padding-inline: 40px;
+    }
+  }
+
   .card {
-    @apply rounded-2xl border border-line bg-card;
+    @apply rounded-xl border border-line bg-card;
   }
 
   .field {
-    @apply w-full rounded-xl border border-line bg-white px-3 py-2.5 text-small text-ink placeholder:text-muted/70 transition focus:border-secondary focus:outline-none focus:ring-2 focus:ring-secondary/20 disabled:bg-page disabled:text-muted;
+    @apply w-full rounded-lg border border-line bg-white px-3 py-2.5 text-small text-ink placeholder:text-muted/80 transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:bg-cream disabled:text-muted;
   }
 
   .label {
@@ -83,24 +123,24 @@ body {
     height: 8px;
   }
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: #c9d6cd;
+    background: #d8d0c2;
     border-radius: 999px;
   }
 }
 
 @layer utilities {
   .animate-fade-up {
-    animation: fadeUp 0.45s ease both;
+    animation: fadeUp 0.35s ease both;
   }
   .animate-fade-in {
-    animation: fadeIn 0.3s ease both;
+    animation: fadeIn 0.25s ease both;
   }
 }
 
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -117,14 +157,13 @@ body {
   }
 }
 
-.leaf-grid {
-  background-image: radial-gradient(circle at 1px 1px, rgba(36, 92, 69, 0.14) 1px, transparent 0);
-  background-size: 22px 22px;
-}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-.hero-glow {
-  background:
-    radial-gradient(60% 60% at 20% 20%, rgba(59, 128, 98, 0.22), transparent 70%),
-    radial-gradient(50% 60% at 80% 10%, rgba(231, 242, 235, 0.9), transparent 70%),
-    linear-gradient(150deg, #eef6f1 0%, #f7faf8 55%, #e7f2eb 100%);
+  .animate-fade-up,
+  .animate-fade-in {
+    animation: none;
+  }
 }
