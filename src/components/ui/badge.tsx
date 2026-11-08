@@ -23,44 +23,44 @@ export type StatusKey =
   | "draft"
   | string;
 
-const styles: Record<string, string> = {
-  approved: "bg-success text-[#1D6A3E] border-[#B9E3C7]",
-  verified: "bg-success text-[#1D6A3E] border-[#B9E3C7]",
-  active: "bg-success text-[#1D6A3E] border-[#B9E3C7]",
-  completed: "bg-success text-[#1D6A3E] border-[#B9E3C7]",
-  confirmed: "bg-success text-[#1D6A3E] border-[#B9E3C7]",
-  available: "bg-lightgreen text-primary border-[#C6DFD0]",
-  reserved: "bg-info text-[#23548C] border-[#C6DAF4]",
-  pending: "bg-warning text-[#7A5A0B] border-[#F0DFA8]",
-  awaiting: "bg-warning text-[#7A5A0B] border-[#F0DFA8]",
-  provisional: "bg-warning text-[#7A5A0B] border-[#F0DFA8]",
-  "needs-review": "bg-warning text-[#7A5A0B] border-[#F0DFA8]",
-  "pending-review": "bg-warning text-[#7A5A0B] border-[#F0DFA8]",
-  "under-review": "bg-warning text-[#7A5A0B] border-[#F0DFA8]",
-  "in-progress": "bg-info text-[#23548C] border-[#C6DAF4]",
-  rejected: "bg-error text-[#8C2F27] border-[#F2C5C1]",
-  declined: "bg-error text-[#8C2F27] border-[#F2C5C1]",
-  inactive: "bg-[#EEF1EF] text-[#59655E] border-[#DDE5DF]",
-  expired: "bg-[#EEF1EF] text-[#59655E] border-[#DDE5DF]",
-  cancelled: "bg-[#EEF1EF] text-[#59655E] border-[#DDE5DF]",
-  draft: "bg-[#EEF1EF] text-[#59655E] border-[#DDE5DF]",
+const statusStyles: Record<string, string> = {
+  approved: "bg-risk-safe-bg text-risk-safe border-risk-safe/25",
+  verified: "bg-risk-safe-bg text-risk-safe border-risk-safe/25",
+  active: "bg-risk-safe-bg text-risk-safe border-risk-safe/25",
+  completed: "bg-risk-safe-bg text-risk-safe border-risk-safe/25",
+  confirmed: "bg-risk-safe-bg text-risk-safe border-risk-safe/25",
+  available: "bg-softgreen text-primary border-primary/20",
+  reserved: "bg-cream text-ink border-line",
+  pending: "bg-risk-soon-bg text-risk-soon border-risk-soon/25",
+  awaiting: "bg-risk-soon-bg text-risk-soon border-risk-soon/25",
+  provisional: "bg-risk-soon-bg text-risk-soon border-risk-soon/25",
+  "needs-review": "bg-risk-soon-bg text-risk-soon border-risk-soon/25",
+  "pending-review": "bg-risk-soon-bg text-risk-soon border-risk-soon/25",
+  "under-review": "bg-risk-soon-bg text-risk-soon border-risk-soon/25",
+  "in-progress": "bg-softgreen text-primary border-primary/20",
+  rejected: "bg-risk-review-bg text-risk-review border-risk-review/25",
+  declined: "bg-risk-review-bg text-risk-review border-risk-review/25",
+  inactive: "bg-cream text-muted border-line",
+  expired: "bg-cream text-muted border-line",
+  cancelled: "bg-cream text-muted border-line",
+  draft: "bg-cream text-muted border-line",
 };
 
-const labels: Record<string, string> = {
+const statusLabels: Record<string, string> = {
   available: "Available",
   reserved: "Reserved",
   completed: "Completed",
-  "pending-review": "Pending Review",
+  "pending-review": "Pending review",
   rejected: "Rejected",
   expired: "Expired",
   cancelled: "Cancelled",
   provisional: "Provisional",
-  awaiting: "Awaiting Confirmation",
+  awaiting: "Awaiting confirmation",
   confirmed: "Confirmed",
   declined: "Declined",
-  "in-progress": "Collection in Progress",
-  "needs-review": "Needs Review",
-  "under-review": "Under Review",
+  "in-progress": "Collection in progress",
+  "needs-review": "Needs review",
+  "under-review": "Under review",
   pending: "Pending",
   approved: "Approved",
   active: "Active",
@@ -72,22 +72,57 @@ export function StatusBadge({
   status,
   label,
   className,
+  showDot = true,
 }: {
   status: StatusKey;
   label?: string;
   className?: string;
+  showDot?: boolean;
 }) {
   const key = status.toLowerCase();
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-caption font-medium whitespace-nowrap",
-        styles[key] ?? "bg-[#EEF1EF] text-[#59655E] border-line",
+        "inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg border px-2.5 py-1 text-caption font-medium",
+        statusStyles[key] ?? "border-line bg-cream text-muted",
         className
       )}
     >
-      <span className="h-1.5 w-1.5 rounded-full bg-current opacity-70" />
-      {label ?? labels[key] ?? status}
+      {showDot ? <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden /> : null}
+      {label ?? statusLabels[key] ?? status}
+    </span>
+  );
+}
+
+export type BadgeTone = "neutral" | "green" | "safe" | "soon" | "review" | "outline";
+
+const badgeTones: Record<BadgeTone, string> = {
+  neutral: "bg-cream text-ink border-line",
+  green: "bg-softgreen text-primary border-primary/20",
+  safe: "bg-risk-safe-bg text-risk-safe border-risk-safe/25",
+  soon: "bg-risk-soon-bg text-risk-soon border-risk-soon/25",
+  review: "bg-risk-review-bg text-risk-review border-risk-review/25",
+  outline: "bg-white text-muted border-line",
+};
+
+export function Badge({
+  children,
+  tone = "neutral",
+  className,
+}: {
+  children: React.ReactNode;
+  tone?: BadgeTone;
+  className?: string;
+}) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg border px-2.5 py-1 text-caption font-medium",
+        badgeTones[tone],
+        className
+      )}
+    >
+      {children}
     </span>
   );
 }
