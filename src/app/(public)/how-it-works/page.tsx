@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {
   ArrowRight,
-  BadgeCheck,
   BellRing,
   ClipboardCheck,
   HeartHandshake,
@@ -10,12 +9,22 @@ import {
   Truck,
   UserCheck,
 } from "lucide-react";
+import { buttonStyles } from "@/components/ui/button";
+import {
+  ProcessTimeline,
+  type ProcessStep,
+} from "@/components/how-it-works/process-timeline";
+import {
+  ReservationStepper,
+  type ReservationStage,
+} from "@/components/how-it-works/reservation-stepper";
 
 export const metadata = { title: "How It Works | Smart Food Exchange" };
 
-const steps = [
+const steps: ProcessStep[] = [
   {
     icon: HeartHandshake,
+    stage: "Donation",
     title: "Donors share surplus food",
     description:
       "A donor creates a donation with food details, quantity, preparation and expiry times, storage conditions, allergens, photos, and pickup instructions.",
@@ -23,6 +32,7 @@ const steps = [
   },
   {
     icon: ClipboardCheck,
+    stage: "Safety",
     title: "Platform verifies food information",
     description:
       "Automated checks compare the donation against food safety rules for expiry, storage temperature, packaging, and allergen completeness.",
@@ -30,6 +40,7 @@ const steps = [
   },
   {
     icon: Sparkles,
+    stage: "Matching",
     title: "AI matches eligible recipients",
     description:
       "Approved donations are matched only with eligible recipients. Urgency is prioritised, followed by match score, and a provisional reservation is created.",
@@ -37,6 +48,7 @@ const steps = [
   },
   {
     icon: Truck,
+    stage: "Collection",
     title: "Recipients confirm and collect",
     description:
       "Recipients confirm or decline. Confirmed reservations move to transport coordination. After collection, recipients confirm the actual quantity collected.",
@@ -44,121 +56,155 @@ const steps = [
   },
 ];
 
+const reservationStages: ReservationStage[] = [
+  {
+    icon: Sparkles,
+    status: "Provisional",
+    title: "Provisional reservation",
+    description: "AI places a time-limited hold for a selected eligible recipient.",
+  },
+  {
+    icon: BellRing,
+    status: "Awaiting reply",
+    title: "Awaiting confirmation",
+    description: "The recipient confirms or declines within the confirmation window.",
+  },
+  {
+    icon: Truck,
+    status: "In progress",
+    title: "Confirmed & in progress",
+    description: "Transport is coordinated and collection begins.",
+  },
+  {
+    icon: PackageCheck,
+    status: "Completed",
+    title: "Completed",
+    description:
+      "The recipient confirms the collected quantity, which counts as redistribution.",
+  },
+];
+
+const roles = [
+  {
+    icon: UserCheck,
+    title: "For donors",
+    description:
+      "Share surplus food, track verification, follow reservations, and measure your contribution.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "For recipients",
+    description:
+      "Browse eligible food, receive AI matches, manage reservations, and confirm collections.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "For administrators",
+    description:
+      "Review flagged food, approve accounts, monitor reservations, and export impact reports.",
+  },
+];
+
 export default function HowItWorksPage() {
   return (
     <>
-      <section className="hero-glow border-b border-line">
-        <div className="container-page py-10 md:py-16">
-          <span className="text-caption font-semibold uppercase tracking-wider text-secondary">How it works</span>
-          <h1 className="mt-2 max-w-3xl text-[32px] font-bold leading-tight text-ink md:text-[44px]">
-            From surplus food to a confirmed collection.
-          </h1>
-          <p className="mt-3 max-w-2xl text-body text-muted">
-            Every donation follows a clear verification and matching process. Recipients only see
-            eligible, available food, and only confirmed collected quantities count as redistributed.
-          </p>
-          <Link href="/register" className="mt-6 inline-flex h-11 items-center gap-2 rounded-xl bg-primary px-5 text-btn text-white hover:bg-[#1d4c39]">
-            Create an account <ArrowRight className="h-4 w-4" />
-          </Link>
+      <section className="border-b border-line bg-white">
+        <div className="container-page py-12 md:py-16">
+          <div className="max-w-3xl">
+            <p className="text-caption font-semibold text-secondary">How it works</p>
+            <h1 className="mt-3 text-[36px] font-bold leading-[1.1] tracking-tight text-ink sm:text-[46px] lg:text-[52px]">
+              From surplus food to a confirmed collection.
+            </h1>
+            <p className="mt-4 max-w-2xl text-body text-muted">
+              Every donation follows a clear verification and matching process. Recipients only see
+              eligible, available food, and only confirmed collected quantities count as redistributed.
+            </p>
+            <Link href="/register" className={buttonStyles("primary", "lg", "mt-7")}>
+              Create an account <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <ol
+            className="mt-10 grid gap-3 border-t border-line pt-5 sm:grid-cols-2 lg:grid-cols-4"
+            aria-label="Process stages"
+          >
+            {steps.map((step, index) => (
+              <li key={step.stage} className="flex items-center gap-3">
+                <span className="text-caption font-semibold text-secondary">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="text-label font-medium text-ink">{step.stage}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      <section className="container-page py-10 md:py-14">
-        <div className="grid gap-4 lg:grid-cols-4">
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-            return (
-              <div key={step.title} className="card relative p-5">
-                <div className="flex items-center justify-between">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-lightgreen text-primary">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <span className="text-[28px] font-bold leading-none text-lightgreen">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <h2 className="mt-3 text-h3 text-ink">{step.title}</h2>
-                <p className="mt-1.5 text-small text-muted">{step.description}</p>
-                <ul className="mt-3 space-y-1.5 border-t border-line pt-3">
-                  {step.details.map((detail) => (
-                    <li key={detail} className="flex items-start gap-1.5 text-caption text-muted">
-                      <BadgeCheck className="mt-0.5 h-3.5 w-3.5 shrink-0 text-secondary" /> {detail}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
+      <section className="container-page py-12 md:py-16">
+        <div className="grid gap-9 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-14">
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <p className="text-caption font-semibold text-secondary">The donation journey</p>
+            <h2 className="mt-1 text-h1 text-ink">Four checks before a collection</h2>
+            <p className="mt-2 text-small text-muted">
+              Each stage keeps food safety, recipient eligibility, and collection status visible to
+              everyone involved.
+            </p>
+          </div>
+
+          <ProcessTimeline steps={steps} />
         </div>
       </section>
 
       <section className="border-y border-line bg-white">
-        <div className="container-page py-10 md:py-14">
+        <div className="container-page py-12 md:py-16">
           <div className="max-w-2xl">
-            <span className="text-caption font-semibold uppercase tracking-wider text-secondary">Reservation flow</span>
+            <p className="text-caption font-semibold text-secondary">Reservation flow</p>
             <h2 className="mt-1 text-h1 text-ink">A hold is not a guarantee</h2>
-            <p className="mt-1 text-small text-muted">
+            <p className="mt-2 text-small text-muted">
               The platform tracks reservations independently from donations. Quantities held by active
               provisional reservations are excluded from available stock.
             </p>
           </div>
-          <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              { title: "Provisional reservation", text: "AI places a time-limited hold for a selected eligible recipient.", icon: Sparkles },
-              { title: "Awaiting confirmation", text: "The recipient confirms or declines within the confirmation window.", icon: BellRing },
-              { title: "Confirmed & in progress", text: "Transport is coordinated and collection begins.", icon: Truck },
-              { title: "Completed", text: "The recipient confirms the collected quantity, which counts as redistribution.", icon: PackageCheck },
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
-                <div key={item.title} className="rounded-2xl border border-line bg-page/60 p-4">
-                  <Icon className="h-5 w-5 text-primary" />
-                  <h3 className="mt-2 text-label font-semibold text-ink">{item.title}</h3>
-                  <p className="mt-1 text-caption text-muted">{item.text}</p>
-                </div>
-              );
-            })}
-          </div>
-          <div className="mt-5 rounded-2xl border border-[#C6DAF4] bg-info/70 p-4 text-small text-[#23548C]">
-            <strong className="font-semibold">Declined or expired?</strong> The held quantity is released
-            for future eligible matching if the donation is still valid. A single donation can be split
-            across multiple recipients, each tracked independently.
+
+          <ReservationStepper stages={reservationStages} className="mt-8" />
+
+          <div className="mt-6 rounded-2xl border border-[#F0DFA8] bg-warning/50 p-4 text-small text-[#6F530C] md:p-5">
+            <strong className="font-semibold text-[#7A5A0B]">Declined or expired?</strong> The held
+            quantity is released for future eligible matching if the donation is still valid. A single
+            donation can be split across multiple recipients, each tracked independently.
           </div>
         </div>
       </section>
 
-      <section className="container-page py-10 md:py-14">
-        <div className="grid gap-4 md:grid-cols-3">
-          <div className="card p-5">
-            <UserCheck className="h-6 w-6 text-primary" />
-            <h2 className="mt-3 text-h3 text-ink">For donors</h2>
-            <p className="mt-1.5 text-small text-muted">
-              Share surplus food, track verification, follow reservations, and measure your contribution.
-            </p>
-            <Link href="/donor/dashboard" className="mt-3 inline-flex items-center gap-1.5 text-label font-semibold text-primary hover:underline">
-              Open donor dashboard <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="card p-5">
-            <HeartHandshake className="h-6 w-6 text-primary" />
-            <h2 className="mt-3 text-h3 text-ink">For recipients</h2>
-            <p className="mt-1.5 text-small text-muted">
-              Browse eligible food, receive AI matches, manage reservations, and confirm collections.
-            </p>
-            <Link href="/recipient/dashboard" className="mt-3 inline-flex items-center gap-1.5 text-label font-semibold text-primary hover:underline">
-              Open recipient dashboard <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="card p-5">
-            <ClipboardCheck className="h-6 w-6 text-primary" />
-            <h2 className="mt-3 text-h3 text-ink">For administrators</h2>
-            <p className="mt-1.5 text-small text-muted">
-              Review flagged food, approve accounts, monitor reservations, and export impact reports.
-            </p>
-            <Link href="/admin/dashboard" className="mt-3 inline-flex items-center gap-1.5 text-label font-semibold text-primary hover:underline">
-              Open admin dashboard <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+      <section className="container-page py-12 md:py-16">
+        <div className="max-w-2xl">
+          <p className="text-caption font-semibold text-secondary">Responsibilities</p>
+          <h2 className="mt-1 text-h1 text-ink">Who does what</h2>
+          <p className="mt-2 text-small text-muted">
+            Each participant has a clear role in keeping the exchange safe, fair, and accountable.
+          </p>
+        </div>
+
+        <div className="mt-6 overflow-hidden rounded-2xl border border-line bg-card">
+          {roles.map((role, index) => {
+            const Icon = role.icon;
+            return (
+              <div
+                key={role.title}
+                className={`grid gap-3 px-5 py-5 sm:grid-cols-[220px_minmax(0,1fr)] sm:items-start ${
+                  index > 0 ? "border-t border-line" : ""
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-lightgreen text-primary">
+                    <Icon className="h-4 w-4" aria-hidden />
+                  </span>
+                  <h3 className="text-h3 text-ink">{role.title}</h3>
+                </div>
+                <p className="text-small text-muted">{role.description}</p>
+              </div>
+            );
+          })}
         </div>
       </section>
     </>
